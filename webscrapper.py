@@ -12,7 +12,8 @@ COLUMN_TO_INDEX_MAP = {
     'twentyFourHour': 5,
     'sevenDay': 6,
     'marketCap': 7,
-    'volume': 8
+    'volume': 8,
+    'supply': 9
 }
 session = requests.session()
 
