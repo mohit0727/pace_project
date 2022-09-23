@@ -1,0 +1,30 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">1h %</th>
+        <th scope="col">24h %</th>
+        <th scope="col">7d %</th>
+        <th scope="col">Market Cap</th>
+        <th scope="col">Volume(24h)</th>
+        <th scope="col">Circulating Supply</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let currency of currencies?.results; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td style="font-weight: 500;">{{ currency.name }}</td>
+        <td style="color: #000;">{{ currency.price }}</td>
+        <td [style.color]="currency.oneHour_sign === 'down' ? 'red' : 'green'">{{ currency.oneHour }}</td>
+        <td [style.color]="currency.twentyFourHour_sign === 'down' ? 'red' : 'green'">{{ currency.twentyFourHour }}</td>
+        <td [style.color]="currency.sevenDay_sign === 'down' ? 'red' : 'green'">{{ currency.sevenDay }}</td>
+        <td>{{ currency.marketCap }}</td>
+        <td>{{ currency.volume }}</td>
+        <td>{{ currency.supply }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
