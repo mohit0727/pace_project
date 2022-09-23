@@ -3,13 +3,17 @@ import pymongo
 from bson import ObjectId
 from datetime import datetime
 from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
 
 db = pymongo.MongoClient('mongodb://127.0.0.1')['coinbase']
 
 if __name__ == '__main__':
     app = Flask(__name__)
+    cors = CORS(app)
+    app.config['CORS_HEADERS'] = 'Content-Type'
 
     @app.route('/setData', methods=['POST'])
+    @cross_origin()
     def set_data():
         data = request.get_json()
         if 'results' not in data:
@@ -27,6 +31,7 @@ if __name__ == '__main__':
         }), 200
 
     @app.route('/getData', methods=['GET'])
+    @cross_origin()
     def get_data():
         latest_sync = db['synced_data'].find().sort('_id', -1).limit(1)
         latest_sync = latest_sync[0]
